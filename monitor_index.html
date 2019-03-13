@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+</head>
+
+<body>
+  <div class="center-content">
+
+  <h2>ART MANAGEMENT SYSTEM</h2>
+  <h1>MONITOR</h1>
+  <div class="bg">
+    <h3 id="safe"></h3>
+    <h3 id="status"></h3>
+    <h3 id="date"></h3>
+    <h3 id="time"></h3>
+    <h3 id="humid"></h3>
+    <h3 id="temp"></h3>
+    <h3 id="light"></h3>
+  </div>
+
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyCa4_RV8wGR8XEiyFJoiFyHH-jpRuSWdfQ",
+      authDomain: "iot496497.firebaseapp.com",
+      databaseURL: "https://iot496497.firebaseio.com",
+      projectId: "iot496497",
+      storageBucket: "iot496497.appspot.com",
+      messagingSenderId: "105817701866"
+    };
+    firebase.initializeApp(config);
+
+    var safety = document.getElementById('safe');
+    var stat = document.getElementById('status');
+    var date = document.getElementById('date');
+    var time = document.getElementById('time');
+    var humid = document.getElementById('humid');
+    var temp = document.getElementById('temp');
+    var light = document.getElementById('light');
+
+    var dbRef = firebase.database().ref();
+    dbRef.on("child_added", snap => {
+      var s = snap.val();
+      safety.innerText = "Status: " + s.Flame;
+      stat.innerText = "System: " + s.Sysyem;
+      date.innerText = "Date: " + s.Date;
+      time.innerText = "Time: " + s.Time;
+      humid.innerText = "Humidity: " + s.Humidity;
+      temp.innerText = "Temperature: " + s.Temperature;
+      light.innerText = "Light: " + s.Light;
+    });
+
+  </script>
+</body>
+</html>
