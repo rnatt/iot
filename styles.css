@@ -7,6 +7,10 @@
   display: inline-flex !important;
 }
 
+.head {
+  padding-top: 75px;
+}
+
 .bg {
   background-color: #fff4e2;
   width: 75%;
